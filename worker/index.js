@@ -7,7 +7,6 @@ self.addEventListener('push', function (event) {
     self.registration.showNotification(data.title, {
       body: data.message,
       icon: '/icons/android-chrome-192x192.png',
-      url:'http://www.google.com',
       dir:"rtl",
       vibrate:[300,100,400],
       actions:[

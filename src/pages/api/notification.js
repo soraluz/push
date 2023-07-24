@@ -12,7 +12,7 @@ const Notification = (req, res) => {
 
     webPush.sendNotification(
         push,
-        JSON.stringify({ title: "Hola Web Push", message: "Probando notificaciones desde el Back!" })
+        JSON.stringify({ title: "Push la Hora", message: "Probando notificaciones enviado desde el Back!" })
       )
       .then(response => {
         res.writeHead(response.statusCode, response.headers).end(response.body)
