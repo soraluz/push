@@ -6,7 +6,19 @@ self.addEventListener('push', function (event) {
   event.waitUntil(
     self.registration.showNotification(data.title, {
       body: data.message,
-      icon: '/icons/android-chrome-192x192.png'
+      icon: '/icons/android-chrome-192x192.png',
+      url:'http://www.google.com',
+      dir:"rtl",
+      vibrate:[300,100,400],
+      actions:[
+        {
+          action:'explore',title:"Opcion explorar",
+        },
+        {
+          action:'close',title:"Opcion cerrar"
+        }
+      ] ,
+    
     })
   )
 })
@@ -16,6 +28,8 @@ self.addEventListener('install', function (event) {
 })
 
 self.addEventListener('notificationclick', function (event) {
+  console.log("click en notificacion")
+
   event.notification.close()
   event.waitUntil(
     clients.matchAll({ type: 'window', includeUncontrolled: true }).then(function (clientList) {
@@ -31,7 +45,7 @@ self.addEventListener('notificationclick', function (event) {
       return clients.openWindow('/')
     })
   )
-})
+}) 
 
 // self.addEventListener('pushsubscriptionchange', function(event) {
 //   event.waitUntil(
