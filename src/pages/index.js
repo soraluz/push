@@ -18,7 +18,7 @@ const Index = () => {
 
   useEffect(() =>  {
     // run only in browser
-async function notificacion (){
+  async function notificacion (){
       let permissionResult=  await permiso()
       if(permissionResult=="granted"){
         subscribe()         
