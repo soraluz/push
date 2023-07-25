@@ -18,12 +18,19 @@ const Index = () => {
 
   useEffect(() =>  {
     // run only in browser
-    subscribe()      
-   /*  setTimeout(() => {
-    sendNotification()
-    }, 1500) */
+async function notificacion (){
+      let permissionResult=  await permiso()
+      if(permissionResult=="granted"){
+        subscribe()         
+     }
+  }
+  notificacion()
+
   }, [])
 
+  async function permiso (){
+    return await Notification.requestPermission()
+  } 
   const subscribe = async () => {
     
     let sw=await navigator.serviceWorker.ready;
@@ -33,13 +40,11 @@ const Index = () => {
     })
     await sendNotification(push)   
     // TODO: you should call your API to save subscription data on server in order to send web push notification from server
-    console.log('web push subscribed!',push)
 
   }
 
   const sendNotification = async(push)  => {
   
-    console.log("subscription pasada",push)
     await fetch('/api/notification', {
       method: 'POST',
       headers: {
