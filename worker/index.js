@@ -21,11 +21,38 @@ self.addEventListener('push', function (event) {
 
   )
 })
+/* 
+var CACHE_NAME="my-site-cache";
+var urlsToCache=[
+  "/",
+  "/prueba.js"
+]
 
 self.addEventListener('install', function (event) {
   console.log("Se instalo el aplicativo")
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+    .then(function(cache){
+      console.log("cache abierta")
+      return cache.addAll(urlsToCache)
+    })
+  )
 })
 
+self.addEventListener('fetch', function(event){
+  console.log("Ingreso a fetch")
+  console.log("fetch a ",event.request)
+  event.respondWith(
+    caches.match(event.request)
+    .then(function(response){
+      
+      if(response){
+        return response
+      }
+      return fetch(event.request)
+    })
+  )
+}) */
 
 self.addEventListener('notificationclick', function (event) {
 //Cierra la notificacion
